@@ -1,0 +1,9 @@
+C:\Users\Faria Siddiqui\source\MiniHR.Application\bin\Debug\netcoreapp2.2\MiniHR.Application.deps.json
+C:\Users\Faria Siddiqui\source\MiniHR.Application\bin\Debug\netcoreapp2.2\MiniHR.Application.dll
+C:\Users\Faria Siddiqui\source\MiniHR.Application\bin\Debug\netcoreapp2.2\MiniHR.Application.pdb
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.csprojAssemblyReference.cache
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.csproj.CoreCompileInputs.cache
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.AssemblyInfoInputs.cache
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.AssemblyInfo.cs
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.dll
+C:\Users\Faria Siddiqui\source\MiniHR.Application\obj\Debug\netcoreapp2.2\MiniHR.Application.pdb

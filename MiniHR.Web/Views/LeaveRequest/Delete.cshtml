@@ -1,0 +1,12 @@
+﻿@model MiniHR.Application.DTOs.LeaveRequestDto
+
+<h2>Delete Leave Request</h2>
+<div>
+    <h4>Confirm delete?</h4>
+    <p>@Model.LeaveType from @Model.StartDate.ToShortDateString() to @Model.EndDate.ToShortDateString()</p>
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="LeaveID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

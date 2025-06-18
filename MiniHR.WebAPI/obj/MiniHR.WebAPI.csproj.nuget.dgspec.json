@@ -1,0 +1,310 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.WebAPI\\MiniHR.WebAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj",
+        "projectName": "MiniHR.Domain",
+        "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj",
+        "packagesPath": "C:\\Users\\Faria Siddiqui\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Faria Siddiqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\MiniHR.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\MiniHR.Infrastructure.csproj",
+        "projectName": "MiniHR.Infrastructure",
+        "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\MiniHR.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Faria Siddiqui\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Faria Siddiqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj": {
+                "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj"
+              },
+              "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj": {
+                "projectPath": "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.WebAPI\\MiniHR.WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.WebAPI\\MiniHR.WebAPI.csproj",
+        "projectName": "MiniHR.WebAPI",
+        "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.WebAPI\\MiniHR.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Faria Siddiqui\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Faria Siddiqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj": {
+                "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Domain\\MiniHR.Domain.csproj"
+              },
+              "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\MiniHR.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Faria Siddiqui\\MINIHRAPP\\MiniHR.Infrastructure\\MiniHR.Infrastructure.csproj"
+              },
+              "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj": {
+                "projectPath": "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj",
+        "projectName": "MiniHR.Application",
+        "projectPath": "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\MiniHR.Application.csproj",
+        "packagesPath": "C:\\Users\\Faria Siddiqui\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Faria Siddiqui\\source\\MiniHR.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Faria Siddiqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[8.6.2, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

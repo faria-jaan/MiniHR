@@ -1,0 +1,59 @@
+﻿@model MiniHR.Application.DTOs.LeaveRequestDto
+
+@{
+    ViewBag.Title = "Apply for Leave";
+    var balance = ViewBag.LeaveBalance as MiniHR.Application.DTOs.LeaveBalanceDto;
+}
+
+<h2 class="mb-4 text-center">@ViewBag.Title</h2>
+
+<div class="container mt-4" style="max-width: 700px;">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <strong>Your Current Leave Balance</strong>
+        </div>
+        <div class="card-body row text-center">
+            <div class="col-md-4"><strong>Annual:</strong> @balance?.AnnualLeave</div>
+            <div class="col-md-4"><strong>Sick:</strong> @balance?.SickLeave</div>
+            <div class="col-md-4"><strong>Unpaid:</strong> @balance?.UnpaidLeave</div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Create", "LeaveRequest", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.LeaveType, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.LeaveType,
+                new SelectList(new[] { "Annual", "Sick", "Unpaid" }),
+                "-- Select Leave Type --",
+                new { @class = "form-select" })
+            @Html.ValidationMessageFor(m => m.LeaveType, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.StartDate, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.EndDate, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Submit Request</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MiniHR.Application.DTOs.DepartmentDto>
+@{
+    ViewBag.Title = "Departments";
+}
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Departments</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+<h2 class="mt-4">Departments</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<a class="btn btn-primary mb-3" href="@Url.Action("Create")">Create New Department</a>
+
+<table class="table table-bordered table-striped" id="departmentTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th style="width:200px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DepartmentName</td>
+                <td>@item.HeadOfDepartment</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details", new { id = item.DepartmentID })">Details</a>
+                    <a class="btn btn-sm btn-warning" href="@Url.Action("Edit", new { id = item.DepartmentID })">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", new { id = item.DepartmentID })"
+                       onclick="return confirm('Are you sure you want to delete this department?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#departmentTable').DataTable();
+        });
+    </script>
+}

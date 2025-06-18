@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var roles = await UserManager.GetRolesAsync(user);
+}
+
+<nav>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Dashboard</a>
+        </li>
+
+        @if (roles.Contains("Admin"))
+        {
+        <li class="nav-item">
+            <a class="nav-link" href="/Employee">Manage Employees</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Department">Manage Departments</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/LeaveRequest/Approval">Leave Approvals</a>
+        </li>
+        }
+
+        @if (roles.Contains("Employee"))
+        {
+        <li class="nav-item">
+            <a class="nav-link" href="/LeaveRequest/MyLeaves">My Leave Requests</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/LeaveRequest/Apply">Apply for Leave</a>
+        </li>
+        }
+
+        <li class="nav-item">
+            <a class="nav-link" href="/Account/Logout">Logout</a>
+        </li>
+    </ul>
+</nav>

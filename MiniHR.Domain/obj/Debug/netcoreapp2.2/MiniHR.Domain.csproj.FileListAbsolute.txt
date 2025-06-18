@@ -1,0 +1,17 @@
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.deps.json
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.dll
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.pdb
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.AssemblyInfoInputs.cache
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.AssemblyInfo.cs
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.dll
+C:\Users\Faria Siddiqui\source\repos\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.pdb
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.deps.json
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.dll
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\bin\Debug\netcoreapp2.2\MiniHR.Domain.pdb
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.AssemblyInfoInputs.cache
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.AssemblyInfo.cs
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.dll
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.pdb
+C:\Users\Faria Siddiqui\MINIHRAPP\MiniHR.Domain\obj\Debug\netcoreapp2.2\MiniHR.Domain.csprojAssemblyReference.cache

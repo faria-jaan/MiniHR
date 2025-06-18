@@ -1,0 +1,18 @@
+﻿@model MiniHR.Application.DTOs.EmployeeDto
+@{
+    ViewBag.Title = "Employee Details";
+    Layout = "_layout";
+}
+
+<h2>Employee Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.FullName</h5>
+        <p class="card-text"><strong>Email:</strong> @Model.Email</p>
+        <p class="card-text"><strong>Phone:</strong> @Model.Phone</p>
+        <p class="card-text"><strong>Date of Joining:</strong> @Model.DateOfJoining.ToShortDateString()</p>
+        <p class="card-text"><strong>Department ID:</strong> @Model.DepartmentID</p>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</div>
