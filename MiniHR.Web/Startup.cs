@@ -12,7 +12,8 @@ using MiniHR.Web.Seed;
 using MiniHR.Application.Interfaces;
 using MiniHR.Infrastructure.Services;
 using System.Net.Http;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 namespace MiniHR.Web
 {
     public class Startup
@@ -32,7 +33,9 @@ namespace MiniHR.Web
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
+                //options.AccessDeniedPath = "/Account/AccessDenied";
+                options.LogoutPath = "/Account/Logout";
+
             });
 
             services.AddTransient<IDbConnection>(sp =>
@@ -57,8 +60,8 @@ namespace MiniHR.Web
                 var httpFactory = scope.ServiceProvider.GetRequiredService<IHttpClientFactory>();
                 IdentityDataSeeder.SeedAdminUser(userManager, roleManager).Wait();
                 IdentityDataSeeder.SeedAdminUser(userManager, roleManager).Wait();
-                IdentityDataSeeder
-               .SeedRolesAndEmployees(userManager, roleManager, httpFactory).Wait();
+               // IdentityDataSeeder
+               //.SeedRolesAndEmployees(userManager, roleManager, httpFactory).Wait();
             }
 
             if (env.IsDevelopment())
@@ -70,6 +73,7 @@ namespace MiniHR.Web
 
          
             app.UseAuthentication();
+           // app.UseAuthorization();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

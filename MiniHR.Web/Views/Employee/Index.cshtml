@@ -10,6 +10,8 @@
     ViewBag.Title = "Employee List";
 
 }
+<h2 class="mb-4">Employees</h2>
+<hr />
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">
@@ -18,7 +20,7 @@
 }
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-info">
+    <div class="alert  alert-danger">
         @TempData["ErrorMessage"]
     </div>
 
@@ -30,19 +32,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<h2 class="mb-4">Employees</h2>
+
 @if (roles.Contains("Admin"))
 {
     <a href="/Employee/Create" class="btn btn-primary">Add New Employee</a>
 }
+
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
+            <th>Department</th>
             <th>Full Name</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Date Of Joining</th>
+            <th>Is Active</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -51,10 +56,12 @@
         {
             <tr>
                 <td>@item.EmployeeID</td>
+                <td>@item.DepartmentName</td>
                 <td>@item.FullName</td>
                 <td>@item.Email</td>
                 <td>@item.Phone</td>
                 <td>@item.DateOfJoining.ToShortDateString()</td>
+                <td>@item.IsActive</td>
                 <td>
                     <a class="btn btn-sm btn-info" href="/Employee/Details/@item.EmployeeID">Details</a>
                     <a class="btn btn-sm btn-warning" href="/Employee/Edit/@item.EmployeeID">Edit</a>
@@ -66,3 +73,4 @@
     </tbody>
 </table>
 
+@Html.ActionLink("Home", "Dashboard", null, new { @class = "btn btn-secondary" })

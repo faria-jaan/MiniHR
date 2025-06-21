@@ -9,7 +9,7 @@
     ViewBag.Title = "Edit Employee";
     //var departments = ViewBag.Departments as IEnumerable<MiniHR.Application.DTOs.DepartmentDto> ?? Enumerable.Empty<MiniHR.Application.DTOs.DepartmentDto>();
     //var deptSelect = new SelectList(departments, "DepartmentID", "DepartmentName", Model.DepartmentID);
-
+    var errors = ViewBag.DebugModelErrors as IDictionary<string, string[]>;
     dynamic departments = ViewBag.Departments;
 
 }
@@ -29,7 +29,26 @@
                 @using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
                 {
                     @Html.AntiForgeryToken()
-                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    @if (errors != null)
+                    {
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger">
+
+                            <div class="alert alert-danger">
+                                <h5>Validation Errors:</h5>
+                                <ul class="mb-0">
+                                    @foreach (var kv in errors)
+                                    {
+                                        <li>
+                                            <strong>@kv.Key:</strong> @string.Join(", ", kv.Value)
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+
+                        </div>
+                    }
+
+
                     @Html.HiddenFor(m => m.EmployeeID)
 
                     <div class="mb-3">
@@ -58,12 +77,13 @@
 
                     <div class="mb-3">
                         @Html.LabelFor(m => m.DepartmentID, "Department", new { @class = "form-label" })
-                        @Html.DropDownListFor(m => m.DepartmentID,
-        new SelectList(Model.Departments, "DepartmentID", "DepartmentName", Model.DepartmentID),
-        "-- Select Department --",
-        new { @class = "form-select" })
-
-                    @Html.ValidationMessageFor(m => m.DepartmentID, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(Model.Departments, "DepartmentID", "DepartmentName", Model.DepartmentID), "-- Select Department --", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(m => m.DepartmentID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.IsActive, new { @class = "form-label" })
+                        @Html.CheckBoxFor(m => m.IsActive,new { required = "required" })
+                        @Html.ValidationMessageFor(m => m.DateOfJoining, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">
@@ -71,6 +91,8 @@
                             <i class="bi bi-save me-1"></i> Save
                         </button>
                         @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-outline-secondary" })
+                        @*@Html.ActionLink("Home", "Dashboard", null, new { @class = "btn btn-secondary" })*@
+
                     </div>
                 }
             </div>

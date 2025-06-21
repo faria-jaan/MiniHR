@@ -98,6 +98,17 @@ namespace MiniHR.Web.Controllers
             }
 
             var errorContent = await response.Content.ReadAsStringAsync();
+
+            string errorMessage = "Error deleting employee.";
+            try
+            {
+                dynamic errorObj = JsonConvert.DeserializeObject(errorContent);
+                errorMessage = errorObj?.message ?? errorMessage;
+            }
+            catch
+            {
+                errorMessage = errorContent;
+            }
             TempData["ErrorMessage"] = errorContent;
             return RedirectToAction("Index");
         }

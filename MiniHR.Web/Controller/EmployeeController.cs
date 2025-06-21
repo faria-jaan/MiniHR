@@ -22,7 +22,7 @@ namespace MiniHR.Web.Controllers
 
         private const string ApiUrl = "https://localhost:44331/api/employee";
 
-        
+
         public async Task<IActionResult> Index()
         {
 
@@ -44,22 +44,28 @@ namespace MiniHR.Web.Controllers
 
         public async Task<IActionResult> Create()
         {
-           
-            var resp = await _httpClient.GetAsync("https://localhost:44331/api/department");
-            List<DepartmentDto> depts;
-            if (resp.IsSuccessStatusCode)
+            if (User.IsInRole("Admin"))
             {
-                var json = await resp.Content.ReadAsStringAsync();
-                depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(json);
-            }
-            else
-            {
-                depts = new List<DepartmentDto>();
-            }
+                EmployeeDto dto = new EmployeeDto();
+                var resp = await _httpClient.GetAsync("https://localhost:44331/api/department");
+                List<DepartmentDto> depts;
+                if (resp.IsSuccessStatusCode)
+                {
+                    var json = await resp.Content.ReadAsStringAsync();
+                    depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(json);
+                    dto.Departments = depts;
+                }
+                else
+                {
+                    depts = new List<DepartmentDto>();
+                }
 
-            ViewBag.Departments = depts;
-         
-            return View(new EmployeeDto());
+                ViewBag.Departments = depts;
+                dto.DateOfJoining = DateTime.Today;
+                return View(dto);
+            }
+            else { return RedirectToAction("Dashboard", "Home"); }
+
         }
 
 
@@ -67,91 +73,110 @@ namespace MiniHR.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EmployeeDto dto)
         {
-           
-            var deptResponse = await _httpClient.GetAsync("https://localhost:44331/api/department");
 
-            if (deptResponse.IsSuccessStatusCode)
+            if (User.IsInRole("Admin"))
             {
-                var json = await deptResponse.Content.ReadAsStringAsync();
-                var departments = JsonConvert.DeserializeObject<List<DepartmentDto>>(json);
-                ViewBag.DepartmentSelectList = new SelectList(departments, "DepartmentID", "DepartmentName");
-            }
+
+                var deptResponse = await _httpClient.GetAsync("https://localhost:44331/api/department");
+
+                if (deptResponse.IsSuccessStatusCode)
+                {
+                    var json = await deptResponse.Content.ReadAsStringAsync();
+                    var departments = JsonConvert.DeserializeObject<List<DepartmentDto>>(json);
+                    dto.Departments = departments;
+                    // ViewBag.DepartmentSelectList = new SelectList(departments, "DepartmentID", "DepartmentName");
+                }
 
 
-            if (!ModelState.IsValid)
-            {
-                
-                var errors = ModelState
-                    .Where(kv => kv.Value.Errors.Count > 0)
-                    .ToDictionary(
-                        kv => kv.Key,
-                        kv => kv.Value.Errors.Select(e => e.ErrorMessage).ToArray()
-                    );
+                if (!ModelState.IsValid)
+                {
 
-                ViewBag.DebugModelErrors = errors;  
+                    var errors = ModelState
+                        .Where(kv => kv.Value.Errors.Count > 0)
+                        .ToDictionary(
+                            kv => kv.Key,
+                            kv => kv.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                        );
+
+                    ViewBag.DebugModelErrors = errors;
+                    return View(dto);
+                }
+                dto.IsActive = true;
+                var jsonContent = JsonConvert.SerializeObject(dto);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(ApiUrl, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Employee created successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("", "Error creating employee.");
                 return View(dto);
             }
+            else return RedirectToAction("Dashboard", "Home");
 
-
-
-            var jsonContent = JsonConvert.SerializeObject(dto);
-            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync(ApiUrl, content);
-
-            
-            if (response.IsSuccessStatusCode)
-            {
-                TempData["SuccessMessage"] = "Employee created successfully!";
-                return RedirectToAction(nameof(Index));
-            }
-            ModelState.AddModelError("", "Error creating employee.");
-            return View(dto);
         }
 
-       public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            // 1) Load the employee data
-            var resp = await _httpClient.GetAsync($"{ApiUrl}/{id}");
-            if (!resp.IsSuccessStatusCode) return NotFound();
-            var empJson = await resp.Content.ReadAsStringAsync();
-            var dto = JsonConvert.DeserializeObject<EmployeeDto>(empJson);
+            if (User.IsInRole("Admin"))
+            {
+                var resp = await _httpClient.GetAsync($"{ApiUrl}/{id}");
+                if (!resp.IsSuccessStatusCode) return NotFound();
+                var empJson = await resp.Content.ReadAsStringAsync();
+                var dto = JsonConvert.DeserializeObject<EmployeeDto>(empJson);
 
-            // 2) Load departments
-            var respDept = await _httpClient.GetAsync("https://localhost:44331/api/department");
-            var deptJson = await respDept.Content.ReadAsStringAsync();
-            var depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(deptJson);
-            ViewBag.Departments = new SelectList(depts, "DepartmentID", "DepartmentName", dto.DepartmentID);
-            dto.Departments = depts;
-            return View(dto);
+                var respDept = await _httpClient.GetAsync("https://localhost:44331/api/department");
+                var deptJson = await respDept.Content.ReadAsStringAsync();
+                var depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(deptJson);
+                ViewBag.Departments = new SelectList(depts, "DepartmentID", "DepartmentName", dto.DepartmentID);
+                dto.Departments = depts;
+                return View(dto);
+            }
+            else return RedirectToAction("Dashboard", "Home");
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EmployeeDto dto)
         {
-            var respDept = await _httpClient.GetAsync("https://localhost:44331/api/department");
-            var deptJson = await respDept.Content.ReadAsStringAsync();
-            var depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(deptJson);
-            dto.Departments = depts;
-            ViewBag.Departments = new SelectList(depts, "DepartmentID", "DepartmentName", dto.DepartmentID);
-
-
-            if (!ModelState.IsValid)
-                return View(dto);
-
-            var json = JsonConvert.SerializeObject(dto);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var resp = await _httpClient.PutAsync($"{ApiUrl}/{dto.EmployeeID}", content);
-
-            if (resp.IsSuccessStatusCode)
+            if (User.IsInRole("Admin"))
             {
-                TempData["SuccessMessage"] = "Employee updated successfully!";
-                return RedirectToAction(nameof(Index));
-            }
+                var respDept = await _httpClient.GetAsync("https://localhost:44331/api/department");
+                var deptJson = await respDept.Content.ReadAsStringAsync();
+                var depts = JsonConvert.DeserializeObject<List<DepartmentDto>>(deptJson);
+                dto.Departments = depts;
+                ViewBag.Departments = new SelectList(depts, "DepartmentID", "DepartmentName", dto.DepartmentID);
+                if (!ModelState.IsValid)
+                {
 
-            ModelState.AddModelError("", "Error updating employee.");
-            return View(dto);
+                    var errors = ModelState
+                        .Where(kv => kv.Value.Errors.Count > 0)
+                        .ToDictionary(
+                            kv => kv.Key,
+                            kv => kv.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+                        );
+
+                    ViewBag.DebugModelErrors = errors;
+                    return View(dto);
+                }
+
+                var json = JsonConvert.SerializeObject(dto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resp = await _httpClient.PutAsync($"{ApiUrl}/{dto.EmployeeID}", content);
+
+                if (resp.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Employee updated successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError("", "Error updating employee.");
+                return View(dto);
+            }
+            else return RedirectToAction("Dashboard", "Home");
+
         }
 
 
@@ -189,61 +214,58 @@ namespace MiniHR.Web.Controllers
         //    return View(dto);
         //}
 
-
-
         public async Task<IActionResult> Delete(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{ApiUrl}/{id}");
-
-            if (response.IsSuccessStatusCode)
+            if (User.IsInRole("Admin"))
             {
-                TempData["SuccessMessage"] = "Employee deleted successfully!";
+                var response = await _httpClient.DeleteAsync($"{ApiUrl}/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Employee deleted successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                var errorContent = await response.Content.ReadAsStringAsync();
+
+                string errorMessage = "Error deleting employee.";
+                try
+                {
+                    dynamic errorObj = JsonConvert.DeserializeObject(errorContent);
+                    errorMessage = errorObj?.message ?? errorMessage;
+                }
+                catch
+                {
+                    errorMessage = errorContent;
+                }
+
+                TempData["ErrorMessage"] = errorMessage;
                 return RedirectToAction(nameof(Index));
             }
-         
-            var errorContent = await response.Content.ReadAsStringAsync();
-        
-            string errorMessage = "Error deleting employee.";
-            try
-            {
-                dynamic errorObj = JsonConvert.DeserializeObject(errorContent);
-                errorMessage = errorObj?.message ?? errorMessage;
-            }
-            catch
-            {
-                errorMessage = errorContent;
-            }
+            else return RedirectToAction("Dashboard", "Home");
 
-            TempData["ErrorMessage"] = errorMessage;
-            return RedirectToAction(nameof(Index));
         }
-       
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var response = await _httpClient.DeleteAsync($"{ApiUrl}/{id}");
-
             if (response.IsSuccessStatusCode)
                 return RedirectToAction(nameof(Index));
-
             return BadRequest("Could not delete employee.");
         }
 
         public async Task<IActionResult> Details(int id)
         {
             var response = await _httpClient.GetAsync($"{ApiUrl}/{id}");
-
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
                 var dto = JsonConvert.DeserializeObject<EmployeeDto>(json);
                 return View(dto);
             }
-
             return NotFound();
         }
-
-
     }
 }
